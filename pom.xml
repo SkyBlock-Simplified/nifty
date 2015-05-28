@@ -1,0 +1,140 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<packaging>pom</packaging>
+	<groupId>net.netcoding</groupId>
+	<artifactId>niftyparent</artifactId>
+	<name>NiftyParent</name>
+	<version>1.0.0</version>
+	<url>https://netcoding.net/</url>
+	<description>Common configuration across nifty modules.</description>
+
+	<organization>
+		<name>Net Coding</name>
+		<url>https://netcoding.net/</url>
+	</organization>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<jdk.version>1.7</jdk.version>
+		<author>Brian Graham (CraftedFury)</author>
+	</properties>
+
+	<repositories>
+		<repository>
+			<id>netcoding-repo</id>
+			<url>https://nexus.netcoding.net/content/groups/public</url>
+		</repository>
+	</repositories>
+
+	<distributionManagement>
+		<repository>
+			<id>netcoding-repo</id>
+			<name>Releases</name>
+			<url>https://nexus.netcoding.net/content/repositories/releases</url>
+		</repository>
+	</distributionManagement>
+
+	<modules>
+		<module>Core</module>
+		<module>Bungee</module>
+		<module>Bukkit</module>
+		<module>Ranks</module>
+		<module>Chat</module>
+		<module>Items</module>
+		<module>Servers</module>
+		<module>Bans</module>
+		<module>Commands</module>
+	</modules>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.bukkit</groupId>
+				<artifactId>bukkit</artifactId>
+				<version>1.8.3-R0.1-SNAPSHOT</version>
+			</dependency>
+			<dependency>
+				<groupId>org.bukkit</groupId>
+				<artifactId>craftbukkit</artifactId>
+				<version>1.8.3-R0.1-SNAPSHOT</version>
+			</dependency>
+			<dependency>
+				<groupId>net.md-5</groupId>
+				<artifactId>bungeecord-api</artifactId>
+				<version>1.8-SNAPSHOT</version>
+			</dependency>
+			<dependency>
+				<groupId>net.netcoding</groupId>
+				<artifactId>niftycore</artifactId>
+				<version>1.0.0</version>
+			</dependency>
+			<dependency>
+				<groupId>net.netcoding</groupId>
+				<artifactId>niftybukkit</artifactId>
+				<version>3.4.0</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<build>
+		<defaultGoal>clean install</defaultGoal>
+		<finalName>${project.name}-ORIGINAL</finalName>
+
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+				<includes>
+					<include>**/*.xml</include>
+					<include>**/*.yml</include>
+					<include>**/*.properties</include>
+					<include>**/*.txt</include>
+					<include>**/*.csv</include>
+				</includes>
+			</resource>
+			<resource>
+				<directory>src/main/resources</directory>
+				<excludes>
+					<exclude>**/*</exclude>
+				</excludes>
+			</resource>
+		</resources>
+
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.1</version>
+				<configuration>
+					<source>${jdk.version}</source>
+					<target>${jdk.version}</target>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-shade-plugin</artifactId>
+				<version>1.4</version>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>shade</goal>
+						</goals>
+						<configuration>
+							<relocations>
+								<relocation>
+									<pattern>com.google.gson</pattern>
+									<shadedPattern>${project.groupId}.niftycore.util.gson</shadedPattern>
+								</relocation>
+							</relocations>
+							<createDependencyReducedPom>true</createDependencyReducedPom>
+							<shadedArtifactAttached>true</shadedArtifactAttached>
+							<finalName>${project.name}</finalName>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+</project>
