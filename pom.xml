@@ -1,5 +1,5 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<packaging>pom</packaging>
 	<groupId>net.netcoding</groupId>
@@ -83,7 +83,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 
 	<build>
 		<defaultGoal>clean install</defaultGoal>
-		<finalName>${project.name}-ORIGINAL</finalName>
+		<finalName>${project.name}-ORIGINAL-${project.version}</finalName>
 
 		<resources>
 			<resource>
@@ -108,7 +108,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.1</version>
+				<version>3.3</version>
 				<configuration>
 					<source>${jdk.version}</source>
 					<target>${jdk.version}</target>
@@ -116,11 +116,30 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 			</plugin>
 
 			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-shade-plugin</artifactId>
-				<version>1.4</version>
+				<groupId>org.commonjava.maven.plugins</groupId>
+				<artifactId>directory-maven-plugin</artifactId>
+				<version>0.1</version>
 				<executions>
 					<execution>
+						<id>directories</id>
+						<phase>initialize</phase>
+						<goals>
+							<goal>highest-basedir</goal>
+						</goals>
+						<configuration>
+							<property>rootdir</property>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-shade-plugin</artifactId>
+				<version>2.4</version>
+				<executions>
+					<execution>
+						<id>shade</id>
 						<phase>package</phase>
 						<goals>
 							<goal>shade</goal>
@@ -135,6 +154,35 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 							<createDependencyReducedPom>true</createDependencyReducedPom>
 							<shadedArtifactAttached>true</shadedArtifactAttached>
 							<finalName>${project.name}</finalName>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<version>2.10</version>
+				<executions>
+					<execution>
+						<id>copy</id>
+						<phase>package</phase>
+						<goals>
+							<goal>copy</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${rootdir}/target/modules</outputDirectory>
+							<artifactItems>
+								<artifactItem>
+									<groupId>${project.groupId}</groupId>
+									<artifactId>${project.artifactId}</artifactId>
+									<version>${project.version}</version>
+									<type>${project.packaging}</type>
+									<classifier>shaded</classifier>
+									<destFileName>${project.name}.${project.packaging}</destFileName>
+									<excludes>*.pom</excludes>
+								</artifactItem>
+							</artifactItems>
 						</configuration>
 					</execution>
 				</executions>
