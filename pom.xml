@@ -171,7 +171,6 @@
 							<goal>copy</goal>
 						</goals>
 						<configuration>
-							<outputDirectory>${rootdir}/target/modules</outputDirectory>
 							<artifactItems>
 								<artifactItem>
 									<groupId>${project.groupId}</groupId>
@@ -180,9 +179,12 @@
 									<type>${project.packaging}</type>
 									<classifier>shaded</classifier>
 									<destFileName>${project.name}.${project.packaging}</destFileName>
-									<excludes>*.pom</excludes>
 								</artifactItem>
 							</artifactItems>
+							<outputDirectory>${rootdir}/target/modules</outputDirectory>
+							<silent>true</silent>
+							<overWriteReleases>true</overWriteReleases>
+							<overWriteSnapshots>true</overWriteSnapshots>
 						</configuration>
 					</execution>
 				</executions>
