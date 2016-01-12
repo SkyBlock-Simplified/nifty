@@ -5,7 +5,7 @@
 	<groupId>net.netcoding</groupId>
 	<artifactId>niftyparent</artifactId>
 	<name>NiftyParent</name>
-	<version>1.0.1</version>
+	<version>1.0.2</version>
 	<url>https://netcoding.net/</url>
 	<description>Common configuration across nifty modules.</description>
 
@@ -77,7 +77,7 @@
 			<dependency>
 				<groupId>net.netcoding</groupId>
 				<artifactId>niftybukkit</artifactId>
-				<version>3.4.0</version>
+				<version>3.4.1</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
