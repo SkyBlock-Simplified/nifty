@@ -46,10 +46,11 @@
 		<module>Bukkit</module>
 		<module>Ranks</module>
 		<module>Chat</module>
-		<module>Items</module>
-		<module>Servers</module>
 		<module>Bans</module>
 		<module>Commands</module>
+		<module>Items</module>
+		<module>Parkour</module>
+		<module>Servers</module>
 	</modules>
 
 	<dependencyManagement>
