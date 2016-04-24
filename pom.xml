@@ -5,7 +5,7 @@
 	<groupId>net.netcoding</groupId>
 	<artifactId>niftyparent</artifactId>
 	<name>NiftyParent</name>
-	<version>1.0.2</version>
+	<version>1.0.3</version>
 	<url>https://netcoding.net/</url>
 	<description>Common configuration across nifty modules.</description>
 
@@ -19,6 +19,8 @@
 		<jdk.version>1.7</jdk.version>
 		<author>Brian Graham (CraftedFury)</author>
 		<skip-copy>true</skip-copy>
+		<minecraft.version>1.9.2</minecraft.version>
+		<minecraft.provider/>
 	</properties>
 
 	<repositories>
@@ -57,13 +59,8 @@
 		<dependencies>
 			<dependency>
 				<groupId>org.bukkit</groupId>
-				<artifactId>bukkit</artifactId>
-				<version>1.9-R0.1-SNAPSHOT</version>
-			</dependency>
-			<dependency>
-				<groupId>org.bukkit</groupId>
 				<artifactId>craftbukkit</artifactId>
-				<version>1.9-R0.1-SNAPSHOT</version>
+				<version>${minecraft.version}-R0.1-SNAPSHOT</version>
 			</dependency>
 			<dependency>
 				<groupId>net.md-5</groupId>
@@ -79,6 +76,11 @@
 				<groupId>net.netcoding</groupId>
 				<artifactId>niftybukkit</artifactId>
 				<version>3.4.2</version>
+			</dependency>
+			<dependency>
+				<groupId>net.netcoding</groupId>
+				<artifactId>niftybungee</artifactId>
+				<version>2.0.1</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
@@ -183,7 +185,7 @@
 									<destFileName>${project.name}.${project.packaging}</destFileName>
 								</artifactItem>
 							</artifactItems>
-							<outputDirectory>${rootdir}/target/modules</outputDirectory>
+							<outputDirectory>${rootdir}/target/${minecraft.provider}</outputDirectory>
 							<silent>true</silent>
 							<overWriteReleases>true</overWriteReleases>
 							<overWriteSnapshots>true</overWriteSnapshots>
