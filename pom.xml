@@ -19,7 +19,8 @@
 		<jdk.version>1.7</jdk.version>
 		<author>Brian Graham (CraftedFury)</author>
 		<skip-copy>true</skip-copy>
-		<minecraft.version>1.9.2</minecraft.version>
+		<minecraft.version>1.9</minecraft.version>
+		<minecraft.version.minor>${minecraft.version}.2</minecraft.version.minor>
 		<minecraft.provider/>
 	</properties>
 
@@ -60,12 +61,12 @@
 			<dependency>
 				<groupId>org.bukkit</groupId>
 				<artifactId>craftbukkit</artifactId>
-				<version>${minecraft.version}-R0.1-SNAPSHOT</version>
+				<version>${minecraft.version.minor}-R0.1-SNAPSHOT</version>
 			</dependency>
 			<dependency>
 				<groupId>net.md-5</groupId>
 				<artifactId>bungeecord-api</artifactId>
-				<version>1.9-SNAPSHOT</version>
+				<version>${minecraft.version}-SNAPSHOT</version>
 			</dependency>
 			<dependency>
 				<groupId>net.netcoding</groupId>
@@ -75,12 +76,12 @@
 			<dependency>
 				<groupId>net.netcoding</groupId>
 				<artifactId>niftybukkit</artifactId>
-				<version>3.4.2</version>
+				<version>3.4.3</version>
 			</dependency>
 			<dependency>
 				<groupId>net.netcoding</groupId>
 				<artifactId>niftybungee</artifactId>
-				<version>2.0.1</version>
+				<version>2.0.2</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
