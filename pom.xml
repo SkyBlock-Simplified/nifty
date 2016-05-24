@@ -20,7 +20,7 @@
 		<author>Brian Graham (CraftedFury)</author>
 		<skip-copy>true</skip-copy>
 		<minecraft.version>1.9</minecraft.version>
-		<minecraft.version.minor>${minecraft.version}.2</minecraft.version.minor>
+		<minecraft.version.minor>${minecraft.version}.4</minecraft.version.minor>
 		<minecraft.provider/>
 	</properties>
 
