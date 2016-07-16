@@ -2,8 +2,8 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<packaging>pom</packaging>
-	<groupId>net.netcoding</groupId>
-	<artifactId>niftyparent</artifactId>
+	<groupId>net.netcoding.nifty</groupId>
+	<artifactId>parent</artifactId>
 	<name>NiftyParent</name>
 	<version>1.0.0</version>
 	<url>https://netcoding.net/</url>
@@ -16,11 +16,11 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<jdk.version>1.7</jdk.version>
+		<jdk.version>1.8</jdk.version>
 		<author>Brian Graham (CraftedFury)</author>
 		<skip-copy>true</skip-copy>
-		<minecraft.version>1.9</minecraft.version>
-		<minecraft.version.minor>${minecraft.version}.4</minecraft.version.minor>
+		<minecraft.version>1.10</minecraft.version>
+		<minecraft.version.minor>${minecraft.version}.2</minecraft.version.minor>
 		<minecraft.provider/>
 	</properties>
 
@@ -46,7 +46,7 @@
 	<modules>
 		<module>Core</module>
 		<module>Bungee</module>
-		<module>API</module>
+		<module>Library</module>
 		<module>Ranks</module>
 		<module>Chat</module>
 		<module>Bans</module>
@@ -58,29 +58,44 @@
 
 	<dependencyManagement>
 		<dependencies>
-			<!--<dependency>
-				<groupId>org.bukkit</groupId>
-				<artifactId>craftbukkit</artifactId>
-				<version>${minecraft.version.minor}-R0.1-SNAPSHOT</version>
-			</dependency>-->
+			<dependency>
+				<groupId>com.google.guava</groupId>
+				<artifactId>guava</artifactId>
+				<version>18.0</version>
+			</dependency>
+			<dependency>
+				<groupId>com.google.code.gson</groupId>
+				<artifactId>gson</artifactId>
+				<version>2.6.2</version>
+			</dependency>
+			<dependency>
+				<groupId>org.yaml</groupId>
+				<artifactId>snakeyaml</artifactId>
+				<version>1.16</version>
+			</dependency>
 			<dependency>
 				<groupId>net.md-5</groupId>
 				<artifactId>bungeecord-api</artifactId>
 				<version>${minecraft.version}-SNAPSHOT</version>
 			</dependency>
 			<dependency>
-				<groupId>net.netcoding</groupId>
-				<artifactId>niftycore</artifactId>
+				<groupId>net.netcoding.nifty</groupId>
+				<artifactId>core</artifactId>
 				<version>1.0.1</version>
 			</dependency>
+            <dependency>
+                <groupId>net.netcoding.nifty</groupId>
+                <artifactId>common</artifactId>
+                <version>1.0.0</version>
+            </dependency>
 			<dependency>
-				<groupId>net.netcoding</groupId>
-				<artifactId>niftybukkit</artifactId>
-				<version>3.5.0</version>
+				<groupId>net.netcoding.nifty</groupId>
+				<artifactId>library</artifactId>
+				<version>4.0.0</version>
 			</dependency>
 			<dependency>
-				<groupId>net.netcoding</groupId>
-				<artifactId>niftybungee</artifactId>
+				<groupId>net.netcoding.nifty</groupId>
+				<artifactId>bungee</artifactId>
 				<version>2.0.2</version>
 			</dependency>
 		</dependencies>
