@@ -59,6 +59,11 @@
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
+				<groupId>io.netty</groupId>
+				<artifactId>netty-buffer</artifactId>
+				<version>4.0.39.Final</version>
+			</dependency>
+			<dependency>
 				<groupId>com.google.guava</groupId>
 				<artifactId>guava</artifactId>
 				<version>18.0</version>
@@ -179,7 +184,7 @@
 							<relocations>
 								<relocation>
 									<pattern>com.google.gson</pattern>
-									<shadedPattern>${project.groupId}.niftycore.util.gson</shadedPattern>
+									<shadedPattern>${project.groupId}.core.util.gson</shadedPattern>
 								</relocation>
 							</relocations>
 							<createDependencyReducedPom>true</createDependencyReducedPom>
